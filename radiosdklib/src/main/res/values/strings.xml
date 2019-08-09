@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RadioSDKLib</string>
+    <string name="seek">Seek</string>
+    <string name="play">Play</string>
+    <string name="player">Audio Player</string>
+    <string name="pause">Pause</string>
+</resources>

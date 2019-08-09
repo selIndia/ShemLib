@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.shemaroo.radiosdklib"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="29" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--
+        <uses-permission
+        android:name="android.permission.PROCESS_OUTGOING_CALLS"
+        android:required="false" />
+    -->
+
+
+    <!-- Permission: Writing to SDCard -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- Permission: set ringtone -->
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application>
+        <activity
+            android:name="com.shemaroo.radiosdklib.activity.PlayerActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name="com.shemaroo.radiosdklib.mediaplayer.SongService"
+            android:enabled="true"
+            android:exported="true"
+            android:stopWithTask="false" >
+            <intent-filter>
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.shemaroo.radiosdklib.receivers.NotificationBroadcast"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.shemaroo.shemmusicapp.delete" />
+                <action android:name="com.shemaroo.shemmusicapp.pause" />
+                <action android:name="com.shemaroo.shemmusicapp.next" />
+                <action android:name="com.shemaroo.shemmusicapp.play" />
+                <action android:name="com.shemaroo.shemmusicapp.previous" />
+                <action android:name="com.shemaroo.shemmusicapp.thumbnail" />
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+
+        <!-- PHONE STATE RECIEVER -->
+        <!--
+        <receiver android:name=".receivers.PhoneStateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+        -->
+    </application>
+
+</manifest>
